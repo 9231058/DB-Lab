@@ -1,0 +1,1 @@
+select * from "Reserve-1" where weekday = 'saturday';
