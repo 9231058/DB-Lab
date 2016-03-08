@@ -6,7 +6,7 @@ SELECT sum("Emp-1".Salary) as 'Iman' FROM "Emp-1", "Prj-1" WHERE "Emp-1".emp_id 
 
 SELECT "Prj-1".name, avg("Emp-1".Salary) as 'Average' FROM "Emp-1", "Prj-1" WHERE "Emp-1".emp_id = "Prj-1".Emp_id group by "Prj-1".name;
 
-SELECT "Prj-1".name ,"Emp-1".name FROM "Emp-1", "Prj-1" WHERE "Emp-1".Emp_id = "Prj-1".Emp_id and "Emp-1".Name = 'manager'; 
+SELECT "Prj-1".name ,"Emp-1".name FROM "Emp-1", "Prj-1" WHERE "Emp-1".Emp_id = "Prj-1".Emp_id and "Emp-1".Name = 'manager';
 
 SELECT "Emp-1".Salary FROM "Emp-1", "Prj-1" WHERE "Emp-1".Emp_id = "Prj-1".Emp_id and "Prj-1".name = 'A';
 
