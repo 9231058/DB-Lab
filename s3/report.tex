@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{graphicx} % Required for the inclusion of images
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{In the name of God \\ Database Lab \\ Spring 2016} % Title
+
+\author{Parham \textsc{Alvani}} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+
+\begin{center}
+    \begin{tabular}{l r}
+        Date Performed: & March 2, 2016 \\ % Date the experiment was performed
+        Partners: & Iman Tabrizian \\ % Partner names
+    \end{tabular}
+\end{center}
+
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\section{Results and Conclusions}
+\begin{enumerate}
+    \item
+        First query to create table schema:
+
+        CREATE TABLE "persons-1"\\
+        (\\
+        P\_Id  int identity(1,1),\\
+        LastName varchar(255),\\
+        FirstName varchar(255),\\
+        Address varchar(255),\\
+        City varchar(255),\\
+        primary key (FirstName, LastName)\\
+        );\\
+
+        %2.1
+    \item
+        CREATE TABLE "students-1"(\\
+        name varchar(255),\\
+        student\_id int primary key,\\
+        grade int\\
+        );\\
+        %2.2
+    \item
+        DELETE FROM "students-1";\\
+        INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R1',8831047,12);\\
+        INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R2',8831043,10);\\
+        INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R3',8831031,15);\\
+        INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R4',8831051,16);\\
+        INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R1',8831012,11);\\
+        SELECT * FROM "students-1";\\
+        %2.3
+    \item
+        declare @temp table(\\
+        nameb varchar(255),\\
+        student\_idb int,\\
+        new\_grade int,\\
+        old\_grade int\\
+        );\\
+        UPDATE "students-1" SET "students-1".grade = "students-1".grade + 2 output inserted.name,\\
+        inserted.student\_id,inserted.grade,deleted.grade into @temp where "students-1".grade < 15;\\
+        SELECT * FROM @temp;\\
+    \item %2.4
+\end{enumerate}
+\end{document}
