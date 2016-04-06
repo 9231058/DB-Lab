@@ -76,47 +76,46 @@
 	\end{minted}
 
 	\begin{enumerate}
-		\item
-	    \begin{minted}{sql}
-	    SELECT * FROM "persons-1" ORDER BY LastName ASC;
-	    \end{minted}
-		\item
-	    \begin{minted}{sql}
-	    INSERT INTO "persons-1" (LastName, FirstName, Address, City)
-	    	VALUES ('Hansen', 'Ola', 'Timoteivn 10', 'Sandnes');
-	    INSERT INTO "persons-1" (LastName, FirstName, Address, City)
-	    	VALUES ('Svendson', 'Tove', 'Borgvn 23', 'Sandnes');
-	    INSERT INTO "persons-1" (LastName, FirstName, Address, City)
-	    	VALUES ('Pettersen', 'Kari', 'Storgt 20', 'Stavanger');
-	    INSERT INTO "persons-1" (LastName, FirstName, Address, City)
-	    	VALUES ('Nilsen', 'Tom', 'Vingvn 23', 'Stavanger');
-	    SELECT * FROM "persons-1";
-	    \end{minted}
+	\item
+    	\begin{minted}{sql}
+    	SELECT * FROM "persons-1" ORDER BY LastName ASC;
+    	\end{minted}
+    	\item
+    	\begin{minted}{sql}
+    	INSERT INTO "persons-1" (LastName, FirstName, Address, City)
+		VALUES ('Hansen', 'Ola', 'Timoteivn 10', 'Sandnes');
+    	INSERT INTO "persons-1" (LastName, FirstName, Address, City)
+		VALUES ('Svendson', 'Tove', 'Borgvn 23', 'Sandnes');
+    	INSERT INTO "persons-1" (LastName, FirstName, Address, City)
+		VALUES ('Pettersen', 'Kari', 'Storgt 20', 'Stavanger');
+    	INSERT INTO "persons-1" (LastName, FirstName, Address, City)
+		VALUES ('Nilsen', 'Tom', 'Vingvn 23', 'Stavanger');
+    	SELECT * FROM "persons-1";
+   	\end{minted}
+    	\item
+	\begin{minted}{sql}
+    	BEGIN TRANSACTION t1
+
+	UPDATE "persons-1" SET phone_number='0019392' where P_id=1;
+	UPDATE "persons-1" SET phone_number='0019392' where P_id=2;
+	UPDATE "persons-1" SET phone_number='0019392' where P_id=3;
+	UPDATE "persons-1" SET phone_number='0019392' where P_id=4;
+
+	COMMIT TRANSACTION t1;
+
+	SELECT * FROM "persons-1";
+	\end{minted}
+
     \item
 
-	    \begin{minted}{sql}
-	    BEGIN TRANSACTION t1
-
-	    UPDATE "persons-1" SET phone_number='0019392' where P_id=1;
-	    UPDATE "persons-1" SET phone_number='0019392' where P_id=2;
-	    UPDATE "persons-1" SET phone_number='0019392' where P_id=3;
-	    UPDATE "persons-1" SET phone_number='0019392' where P_id=4;
-
-	    COMMIT TRANSACTION t1;
-
-	    SELECT * FROM "persons-1";
-	    \end{minted}
-
-    \item
-
-	    \begin{minted}{sql}
-	    SELECT  FirstName,LastName,Full_address = (CASE P_id
-		    WHEN 1 THEN 'Jomhori'
-		    WHEN 2 THEN 'Enghelab'
-		    WHEN 3 THEN 'Felestin'
-		    ELSE 'Ferdowsi'
-	    end) FROM "persons-1";
-	    \end{minted}
+    \begin{minted}{sql}
+    	SELECT  FirstName,LastName,Full_address = (CASE P_id
+		WHEN 1 THEN 'Jomhori'
+		WHEN 2 THEN 'Enghelab'
+		WHEN 3 THEN 'Felestin'
+		ELSE 'Ferdowsi'
+	end) FROM "persons-1";
+    \end{minted}
 
 	    \item %im-6
 
@@ -156,14 +155,16 @@
 	\begin{minted}{sql}
 	SET identity_insert "persons-1" on;
 	DELETE FROM "persons-1" where FirstName='taylor';
-	declare @temp nvarchar(255);
-	SELECT @temp = phone\_number FROM "persons-1" where Firstname='Tjessem';
-	declare @casted int;
+	DECLARE @temp nvarchar(255);
+	SELECT @temp = phone_number FROM "persons-1" where Firstname='Tjessem';
+	DECLARE @casted int;
 	SET @casted = cast(@temp as int);
-	if @temp < 0011234567
-	INSERT INTO "persons-1" (P_id,FirstName,Lastname, Address,City,phone_number) VALUES (6,'taylor','Jackson','Nisseisten87','Sandnes','0011234567');
-ELSE
-INSERT INTO "persons-1" (P_id, FirstName, Lastname, Address, City, phone_number) VALUES (8,'taylor','Jackson','Nisseisten87','Sandnes','0011234567');
+	IF @temp < 0011234567
+	INSERT INTO "persons-1" (P_id,FirstName,Lastname, Address,City,phone_number)
+	VALUES (6,'taylor','Jackson','Nisseisten87','Sandnes','0011234567');
+	ELSE
+	INSERT INTO "persons-1" (P_id, FirstName, Lastname, Address, City, phone_number)
+	VALUES (8,'taylor','Jackson','Nisseisten87','Sandnes','0011234567');
 	SELECT * FROM "persons-1";
 	\end{minted}
 \end{enumerate}
@@ -171,37 +172,37 @@ INSERT INTO "persons-1" (P_id, FirstName, Lastname, Address, City, phone_number)
 	Creating table schema
 
 	\begin{minted}{sql}
-			CREATE TABLE "students-1"(\\
-				name varchar(255),\\
-				student\_id int primary key,\\
-				grade int\\
-			);\\
+	CREATE TABLE "students-1"(
+		name varchar(255),
+		student_id int primary key,
+		grade int
+	);
 	\end{minted}
 	\begin{enumerate}
 	\item Adding data to table:
 
 	\begin{minted}{sql}
-		DELETE FROM "students-1";\\
-	INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R1',8831047,12);\\
-INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R2',8831043,10);\\
-		INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R3',8831031,15);\\
-	INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R4',8831051,16);\\
-INSERT INTO "students-1" (name,student\_id,grade) VALUES ('R1',8831012,11);\\
-		SELECT * FROM "students-1";\\
+	DELETE FROM "students-1";
+	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R1',8831047,12);
+	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R2',8831043,10);
+	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R3',8831031,15);
+	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R4',8831051,16);
+	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R1',8831012,11);
+	SELECT * FROM "students-1";
 \end{minted}
 \item Achieving result:
 
 	
 	\begin{minted}{sql}
-	declare @temp table(\\
-		nameb varchar(255),\\
-		student\_idb int,\\
-		new\_grade int,\\
-		old\_grade int\\
-	);\\
-UPDATE "students-1" SET "students-1".grade = "students-1".grade + 2 output inserted.name,\\
-inserted.student\_id,inserted.grade,deleted.grade into @temp where "students-1".grade < 15;\\
-		SELECT * FROM @temp;\\
+	DECLARE @temp table(
+		nameb varchar(255),
+		student_idb int,
+		new_grade int,
+		old_grade int
+	);
+	UPDATE "students-1" SET "students-1".grade = "students-1".grade + 2 output inserted.name,
+		inserted.student_id,inserted.grade,deleted.grade into @temp where "students-1".grade < 15;
+	SELECT * FROM @temp;
 \end{minted}
 	\end{enumerate}
 \end{enumerate}
