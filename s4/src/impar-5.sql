@@ -88,3 +88,9 @@ insert into values (
 	'Varkey Chudukatil',
 	98055
 );
+
+select PostalCode.FirstName, PostalCode.LastName,
+	,row_number() over (order by p.PostalCode) as 'Row Number'
+	,rank() over (order by p.PostalCode) as 'Rank'
+	,dense_rank() over (order by p.PostalCode) as 'Dense Rank'
+	from PostalCode as p;
