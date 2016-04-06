@@ -172,38 +172,38 @@
 	Creating table schema
 
 	\begin{minted}{sql}
-	CREATE TABLE "students-1"(
-		name varchar(255),
-		student_id int primary key,
-		grade int
-	);
+CREATE TABLE "students-1"(
+	name varchar(255),
+	student_id int primary key,
+	grade int
+);
 	\end{minted}
-	\begin{enumerate}
-	\item Adding data to table:
-
-	\begin{minted}{sql}
-	DELETE FROM "students-1";
-	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R1',8831047,12);
-	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R2',8831043,10);
-	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R3',8831031,15);
-	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R4',8831051,16);
-	INSERT INTO "students-1" (name,student_id,grade) VALUES ('R1',8831012,11);
-	SELECT * FROM "students-1";
-\end{minted}
-\item Achieving result:
-
 	
-	\begin{minted}{sql}
-	DECLARE @temp table(
-		nameb varchar(255),
-		student_idb int,
-		new_grade int,
-		old_grade int
-	);
-	UPDATE "students-1" SET "students-1".grade = "students-1".grade + 2 output inserted.name,
-		inserted.student_id,inserted.grade,deleted.grade into @temp where "students-1".grade < 15;
-	SELECT * FROM @temp;
-\end{minted}
+	\begin{enumerate}
+		\item Adding data to table:
+			\begin{minted}{sql}
+DELETE FROM "students-1";
+INSERT INTO "students-1" (name,student_id,grade) VALUES ('R1',8831047,12);
+INSERT INTO "students-1" (name,student_id,grade) VALUES ('R2',8831043,10);
+INSERT INTO "students-1" (name,student_id,grade) VALUES ('R3',8831031,15);
+INSERT INTO "students-1" (name,student_id,grade) VALUES ('R4',8831051,16);
+INSERT INTO "students-1" (name,student_id,grade) VALUES ('R1',8831012,11);
+SELECT * FROM "students-1";
+			\end{minted}
+		\item Achieving result:
+			\begin{minted}{sql}
+DECLARE @temp table(
+	nameb varchar(255),
+	student_idb int,
+	new_grade int,
+	old_grade int
+);
+UPDATE "students-1" SET 
+	"students-1".grade = "students-1".grade + 2 OUTPUT inserted.name,
+	inserted.student_id,inserted.grade,deleted.grade INTO @temp
+	WHERE "students-1".grade < 15;
+SELECT * FROM @temp;
+			\end{minted}
 	\end{enumerate}
 \end{enumerate}
 \end{document}
