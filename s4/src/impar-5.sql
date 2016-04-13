@@ -1,96 +1,78 @@
-/*
- * In The Name Of God
- * ========================================
- * [] File Name : impar-5.sql
- *
- * [] Creation Date : 06-04-2016
- *
- * [] Created By : Parham Alvani (parham.alvani@gmail.com)
- * =======================================
-*/
-/*
- * Copyright (c) 2016 Parham Alvani.
-*/
-create table PostalCode (
-	FirstName varchar(50),
-	LastName varchar(50),
-	PostalCode integer
-);
 
-insert into values (
+insert into PostalCode values (
 	'Michael',
 	'Blythe',
 	98027
 );
 
-insert into values (
+insert into PostalCode values (
 	'Linda',
 	'Mitchell',
 	98027
 );
 
-insert into values (
+insert into PostalCode values (
 	'Jillian',
 	'Carson',
 	98027
 );
 
-insert into values (
+insert into PostalCode values (
 	'Garrett',
 	'Vargas',
 	98027
 );
 
-insert into values (
+insert into PostalCode values (
 	'Tsvi',
 	'Reiter',
 	98027
 );
 
-insert into values (
+insert into PostalCode values (
 	'Shu',
 	'Ito',
 	98055
 );
 
-insert into values (
+insert into PostalCode values (
 	'Jose',
 	'Saraiva',
 	98055
 );
 
-insert into values (
+insert into PostalCode values (
 	'Tete',
 	'Mensa-Annan',
 	98055
 );
 
-insert into values (
+insert into PostalCode values (
 	'Lynn',
 	'Tsofilias',
 	98055
 );
 
-insert into values (
+insert into PostalCode values (
 	'Rachel',
 	'Valdez',
 	98055
 );
 
-insert into values (
+insert into PostalCode values (
 	'Jae',
 	'Pak',
 	98055
 );
 
-insert into values (
+insert into PostalCode values (
 	'Ranjit',
 	'Varkey Chudukatil',
 	98055
 );
 
-select PostalCode.FirstName, PostalCode.LastName,
-	,row_number() over (order by p.PostalCode) as 'Row Number'
-	,rank() over (order by p.PostalCode) as 'Rank'
-	,dense_rank() over (order by p.PostalCode) as 'Dense Rank'
+select FirstName, LastName
+	,row_number() over (order by p.PostalCode) as "Row Number"
+	,rank() over (order by p.PostalCode) as Rank
+	,dense_rank() over (order by p.PostalCode) as "Dense Rank"
 	from PostalCode as p;
