@@ -1,9 +1,9 @@
 /*
  * In The Name Of God
  * ========================================
- * [] File Name : impar-3.sql
+ * [] File Name : im-par-3-exec.sql
  *
- * [] Creation Date : 06-04-2016
+ * [] Creation Date : 13-04-2016
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -11,7 +11,4 @@
 /*
  * Copyright (c) 2016 Parham Alvani.
 */
-create procedure swap
-@A int, @B int output
-as
-	set @B = @A;
+update "Book-1" set ID = 1 where ID = 1;

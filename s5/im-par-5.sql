@@ -1,9 +1,9 @@
 /*
  * In The Name Of God
  * ========================================
- * [] File Name : impar-6.sql
+ * [] File Name : im-par-5.sql
  *
- * [] Creation Date : 06-04-2016
+ * [] Creation Date : 13-04-2016
  *
  * [] Created By : Parham Alvani (parham.alvani@gmail.com)
  * =======================================
@@ -11,10 +11,6 @@
 /*
  * Copyright (c) 2016 Parham Alvani.
 */
-create function four_day_later(@d datetime)
-return int
+create trigger not_delete on "Book-1" instead of delete
 as
-begin
-	dateadd(day, 1, @d);
-	return datepart(day, @d);
-end
+print "No change was done :)"
