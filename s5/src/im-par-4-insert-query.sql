@@ -1,1 +1,0 @@
-insert into view_book values ('Good','Mammad',123);
