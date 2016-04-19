@@ -1,0 +1,1 @@
+insert into "Book-1" values (1,'Bookname', 1990,'Mammad',20);
