@@ -19,7 +19,7 @@ create table if not exists employee_1 (
 	employee_id integer primary key,
 	employee_name varchar(255),
 	telephone_number varchar(50),
-	start_date date,
+	start_date datetime,
 	employment_length integer,
 	dependent_name varchar(255),
 	works_for integer,
@@ -49,7 +49,7 @@ create table if not exists checking_account_1 (
 create table if not exists depositor_1 (
 	customer_id integer,
 	account_number integer,
-	access_date date,
+	access_date datetime,
 	primary key (customer_id, account_number),
 	foreign key (customer_id) references customer_1(customer_id)
 );
@@ -71,7 +71,7 @@ create table if not exists loan_1 (
 
 create table if not exists payment_1 (
 	payment_number integer,
-	payment_date date,
+	payment_date datetime,
 	payment_amount integer,
 	loan_number integer,
 	primary key (payment_number, loan_number),
