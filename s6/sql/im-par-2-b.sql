@@ -1,0 +1,2 @@
+create procedure get_payment @payment_number int, @loan_number int, @branch varchar(255) output as
+select @branch = loan_1.branch_name from loan_1, payment_1 where @payment_number = payment_1.payment_number and @loan_number = loan_1.loan_number;
