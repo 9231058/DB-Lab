@@ -74,20 +74,37 @@
 %------- P1
 
 \section{Problem 1}
+\par
+\includegraphics[scale=0.25]{p1/Doctor.jpg}
+\par
+\includegraphics[scale=0.25]{p1/Patient.jpg}
 
 %------- P2
 
 \section{Problem 2}
+\par
 \inputminted{sql}{p2.sql}
 
 %------- P3
 
 \section{Problem 3}
+\subsection{A}
+\par
+Functions are computed values and cannot perform permanent environmental changes
+to SQL Server (i.e. no INSERT or UPDATE statements allowed).
+\par
+A Function can be used inline in SQL Statements if it returns a scalar value or can be
+joined upon if it returns a result set.
+\par
+Statements that return a result set can be used within a stored procedure but not within a stored function.
+\subsection{B}
+\par
 \inputminted{sql}{p3.sql}
 
 %------- P4
 
 \section{Problem 4}
+\par
 \inputminted{sql}{p4.sql}
 
 \end{document}
