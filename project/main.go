@@ -10,12 +10,19 @@
 package main
 
 import (
+	"database/sql"
 	"html/template"
 	"log"
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
+	_ "gopkg.in/rana/ora.v3"
 )
+
+const host := "127.0.0.1"
+const port := 8080
+const sid := "orcl"
 
 var templates map[string]*template.Template
 
@@ -48,7 +55,8 @@ func doLogin(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	u := r.FormValue("username")
 	p := r.FormValue("password")
-	log.Printf("login with %s : %s\n", u, p)
+	or := fmt.Sprintf("%s/%s@%s:%d/%s", u, p, host, port, sid)
+	sql.Open("ora", or)
 }
 
 func getLogin(w http.ResponseWriter, r *http.Request) {
