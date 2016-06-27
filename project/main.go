@@ -11,18 +11,18 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"html/template"
 	"log"
-	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
 	_ "gopkg.in/rana/ora.v3"
 )
 
-const host := "127.0.0.1"
-const port := 8080
-const sid := "orcl"
+const host = "127.0.0.1"
+const port = 8080
+const sid = "orcl"
 
 var templates map[string]*template.Template
 
