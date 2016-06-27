@@ -10,6 +10,7 @@
 package main
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 
@@ -20,8 +21,8 @@ func main() {
 	r := mux.NewRouter().StrictSlash(false)
 	fs := http.FileServer(http.Dir("public"))
 	r.Handle("/", fs)
-	r.HandleFunc("/login", GetLogin).Methods("GET")
-	r.HandleFunc("/login", DoLogin).Methods("POST")
+	r.HandleFunc("/login", getLogin).Methods("GET")
+	r.HandleFunc("/login", doLogin).Methods("POST")
 
 	server := &http.Server{
 		Addr:    ":1373",
@@ -31,12 +32,23 @@ func main() {
 	server.ListenAndServe()
 }
 
-func DoLogin(w http.ResponseWriter, r *http.Request) {
+var templates map[string]*template.Template
+
+func init() {
+	if templates == nil {
+		templates = make(map[string]*template.Template)
+	}
+
+	templates["login"] = template.Must(template.ParseFiles("templates/login.tmpl", "templates/base.tmpl"))
+
+}
+
+func doLogin(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	u := vars["username"]
 	p := vars["password"]
 	log.Printf("login with %s : %s\n", u, p)
 }
 
-func GetLogin(w http.ResponseWriter, r *http.Request) {
+func getLogin(w http.ResponseWriter, r *http.Request) {
 }
