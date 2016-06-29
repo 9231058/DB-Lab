@@ -33,7 +33,6 @@ func main() {
 	r.Handle("/public", fs)
 	r.HandleFunc("/login", getLogin).Methods("GET")
 	r.HandleFunc("/login", doLogin).Methods("POST")
-	r.HandleFunc("/portal", getPortal).Methods("GET")
 
 	initTemplates()
 
@@ -51,14 +50,17 @@ func initTemplates() {
 	}
 
 	templates["login"] = template.Must(template.ParseFiles("templates/login.tmpl", "templates/base.tmpl"))
+	templates["portal"] = template.Must(template.ParseFiles("templates/portal.tmpl", "templates/base.tmpl"))
 }
 
 func doLogin(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	u := r.FormValue("username")
 	p := r.FormValue("password")
+
 	or := fmt.Sprintf("%s/%s@%s:%d/%s", u, p, host, port, sid)
 	db, _ = sql.Open("ora", or)
+
 	tmpl := templates["portal"]
 	tmpl.ExecuteTemplate(w, "base", nil)
 }
