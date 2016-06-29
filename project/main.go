@@ -25,6 +25,7 @@ const port = 8080
 const sid = "orcl"
 
 var templates map[string]*template.Template
+var db *sql.DB
 
 func main() {
 	r := mux.NewRouter().StrictSlash(false)
@@ -32,6 +33,7 @@ func main() {
 	r.Handle("/public", fs)
 	r.HandleFunc("/login", getLogin).Methods("GET")
 	r.HandleFunc("/login", doLogin).Methods("POST")
+	r.HandleFunc("/portal", getPortal).Methods("GET")
 
 	initTemplates()
 
@@ -56,7 +58,9 @@ func doLogin(w http.ResponseWriter, r *http.Request) {
 	u := r.FormValue("username")
 	p := r.FormValue("password")
 	or := fmt.Sprintf("%s/%s@%s:%d/%s", u, p, host, port, sid)
-	sql.Open("ora", or)
+	db, _ = sql.Open("ora", or)
+	tmpl := templates["portal"]
+	tmpl.ExecuteTemplate(w, "base", nil)
 }
 
 func getLogin(w http.ResponseWriter, r *http.Request) {
